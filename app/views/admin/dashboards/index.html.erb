@@ -1,0 +1,12 @@
+
+<p>管理者ログインしないとこれないよ</p>
+
+<h1>全ユーザー一覧</h1>
+<ul>
+  <% @customers.each do |customer| %>
+    <li>
+      <%= customer.last_name %>-<%= customer.first_name %> - <%= customer.email %>
+      <%= link_to '削除', admin_customer_path(customer), method: :delete, data: { confirm: '本当に削除しますか？' } %> 
+    </li>
+  <% end %>
+</ul>
