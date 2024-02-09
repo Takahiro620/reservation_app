@@ -16,20 +16,15 @@
         <li>
           <%= link_to "顧客ログアウト", destroy_customer_session_path, method: :delete %>
         </li>
+        <li>
+          <%= link_to "マイページ", public_customer_path(@customer)  %>
+        </li>
       <% else %>
         <li>
           <%= link_to "顧客新規登録", new_customer_registration_path %>
         </li>
         <li>
           <%= link_to "顧客ログイン", new_customer_session_path %>
-        </li>
-        <li>
-          <%= link_to edit_public_customer_path(@customer) do %>
-            <div class="btn btn-outline-secondary btn-block edit_user_112075">
-            <i class="fas fa-user-cog" aria-hidden="true">
-            </i>
-            </div>
-          <% end %>
         </li>
       <% end %>
       <% if admin_signed_in? %>

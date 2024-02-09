@@ -1,8 +1,22 @@
 class Public::CustomersController < ApplicationController
     before_action :authenticate_customer!
+    def show
+        @customer = current_customer
+    end
+    
     def edit
         @customer = Customer.find(params[:id])
     end
+    
+    def update
+        @customer = Customer.find(params[:id])
+        if @customer.update(customer_params)
+            flash[:notice] = "successfully"
+            redirect_to public_customer_path(@customer.id)
+        else
+            render :edit
+        end
+    end  
     
     private
 

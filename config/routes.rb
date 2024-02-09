@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   end
   
   namespace :public do
-    resources :customers, only: [:edit]
+    resources :customers, only: [:show, :edit, :update]
   end
   
   root to: "homes#top"
