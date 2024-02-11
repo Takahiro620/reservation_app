@@ -14,10 +14,16 @@
     <header>
       <% if customer_signed_in? %>
         <li>
+          <%= link_to "トップページ", root_path %>
+        </li>
+        <li>
           <%= link_to "顧客ログアウト", destroy_customer_session_path, method: :delete %>
         </li>
         <li>
-          <%= link_to "マイページ", public_customer_path(@customer)  %>
+          <%= link_to "マイページ", public_customer_path(current_customer)  %>
+        </li>
+        <li>
+          <%= link_to "顧客向け商品一覧", public_items_path %>
         </li>
       <% else %>
         <li>
@@ -26,10 +32,16 @@
         <li>
           <%= link_to "顧客ログイン", new_customer_session_path %>
         </li>
+        <li>
+          <%= link_to "顧客向け商品一覧", public_items_path %>
+        </li>
       <% end %>
       <% if admin_signed_in? %>
         <li>
           <%= link_to "管理者ログアウト", destroy_admin_session_path, method: :delete %>
+        </li>
+        <li>
+          <%= link_to "管理者向け商品一覧", admin_items_path %>
         </li>
       <% else %>
         <li>
