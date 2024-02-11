@@ -1,0 +1,6 @@
+<h1>顧客詳細</h1>
+<%= @customer.last_name %>-<%= @customer.first_name %> - <%= @customer.email %>
+
+<%= link_to '削除', admin_customer_path(@customer), method: :delete, data: { confirm: '本当に削除しますか？' } %>
+<%= @customer.is_active %>
+<%= link_to "退会", admin_customer_path(@customer), method: :patch, data: { confirm: '本当に退会させますか？' } %>

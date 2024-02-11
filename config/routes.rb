@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   
   namespace :admin do
     get 'dashboards', to: 'dashboards#index'
+    resources :dashboards, only: [:show]
     resources :customers, only: [:destroy, :update] # ここを追加
     resources :items, only: [ :new, :index, :show, :create, :edit, :update, :destroy]
   end

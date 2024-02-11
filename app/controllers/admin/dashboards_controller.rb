@@ -2,9 +2,20 @@ class Admin::DashboardsController < ApplicationController
     before_action :authenticate_admin!
     
     layout 'admin' # ここを追加
-    before_action :authenticate_admin!
+
     def index
         @customers = Customer.all
+        customer = Customer.find_by(email: params[:email])
+        if customer.nil?
+            render :index
+            
+        else
+            redirect_to admin_dashboard_path(customer)
+        end
+    end
+    
+    def show
+        @customer = Customer.find(params[:id])
     end
     
     

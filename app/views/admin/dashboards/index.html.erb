@@ -2,6 +2,11 @@
 <p>管理者ログインしないとこれないよ</p>
 
 <h1>全ユーザー一覧</h1>
+<h3>検索</h3>
+<%= form_with url: admin_dashboards_path, method: :get do |f| %>
+  <%= f.text_field :email %>
+  <%= f.submit '検索' %>
+<% end%>
 <ul>
   <% @customers.each do |customer| %>
     <li>

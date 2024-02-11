@@ -12,6 +12,12 @@
         <li>
           <%= link_to "管理者ログアウト", destroy_customer_session_path, method: :delete %>
         </li>
+        <li>
+          <%= link_to "顧客一覧", admin_dashboards_path %>
+        </li>
+        <li>
+          <%= link_to "管理者向け商品一覧", admin_items_path %>
+        </li>
       <% else %>
         <li>
           <%= link_to "管理者新規登録", new_customer_registration_path %>
