@@ -1,0 +1,19 @@
+<h1>管理者会員編集画面</h1>
+
+<%= form_with model:@customer, url:admin_customer_path(@customer) do |f| %>
+<p>会員ID <%=@customer.id %></p>
+<p>氏名<%=f.text_field :first_name, autofocus: true %>  <%= f.text_field :last_name %></p>
+<p>フリガナ<%=f.text_field :first_name_kana %>  <%= f.text_field :last_name_kana %></p>
+<p>郵便番号<%=f.text_field :postal_code %></p>
+<p>住所<%=f.text_field :address %></p>
+<p>電話番号<%=f.text_field :telephone_number %></p>
+<p>メールアドレス<%=f.text_field :email %></p>
+<p>会員ステータス　       
+    <% if @customer.is_active == true %>
+        <%= "有効" %>
+    <% else %>
+        <%= "無効" %>
+    <% end %>
+<%= link_to "ステータス変更", admin_dashboard_path(@customer), method: :patch, data: { confirm: '本当に変更させますか？' } %></p>
+<%= f.submit "変更" %>
+<% end %>

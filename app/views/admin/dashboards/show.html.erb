@@ -1,6 +1,19 @@
 <h1>顧客詳細</h1>
-<%= @customer.last_name %>-<%= @customer.first_name %> - <%= @customer.email %>
-
+<p>会員ID　 <%=@customer.id %></p>
+<p>名字　 <%=@customer.first_name %></p>
+<p>名前　 <%=@customer.last_name %></p>
+<p>ミョウジ　 <%=@customer.first_name_kana %></p>
+<p>ナマエ　 <%=@customer.last_name_kana %></p>
+<p>郵便番号　 <%=@customer.postal_code %></p>
+<p>住所　 <%=@customer.address %></p>
+<p>電話番号　 <%=@customer.telephone_number %></p>
+<%= link_to "編集", edit_admin_dashboard_path(@customer) %>
 <%= link_to '削除', admin_customer_path(@customer), method: :delete, data: { confirm: '本当に削除しますか？' } %>
-<%= @customer.is_active %>
-<%= link_to "退会", admin_customer_path(@customer), method: :patch, data: { confirm: '本当に退会させますか？' } %>
+<p>会員ステータス　       
+    <% if @customer.is_active == true %>
+        <%= "有効" %>
+    <% else %>
+        <%= "無効" %>
+    <% end %>
+</p>
+<%= link_to "会員ステータス変更", admin_dashboard_path(@customer), method: :patch, data: { confirm: '会員ステータス変更' } %>

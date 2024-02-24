@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   
   namespace :admin do
     get 'dashboards', to: 'dashboards#index'
-    resources :dashboards, only: [:show]
+    resources :dashboards, only: [:show, :edit, :update]
     resources :customers, only: [:destroy, :update] # ここを追加
     resources :items, only: [ :new, :index, :show, :create, :edit, :update, :destroy]
   end
@@ -20,6 +20,11 @@ Rails.application.routes.draw do
   namespace :public do
     resources :customers, only: [:show, :edit, :update]
     resources :items, only: [ :index, :show]
+    resources :cart_items, only: [:show, :new, :create, :index, :destroy] do
+      collection do
+        delete 'destroy_all'
+      end
+    end
   end
   
   root to: "homes#top"

@@ -8,12 +8,11 @@ class Admin::CustomersController < ApplicationController
     
     def update
         @customer = Customer.find(params[:id])
-        if @customer.is_active == true
-            @customer.update(is_active: false)
-            redirect_to admin_dashboards_path, notice: 'Model was successfully updated.'
+        if @customer.update(customer_params)
+            flash[:notice] = "successfully"
+            redirect_to admin_dashboard_path(@customer)
         else
-            @customer.update(is_active: true)
-            redirect_to admin_dashboards_path, notice: 'Model was successfully updated.'
+            render :edit
         end
     end
     

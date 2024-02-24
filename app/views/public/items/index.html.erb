@@ -1,18 +1,31 @@
 <h1>顧客向け商品一覧</h1>
-<thead>
-    <tr>
-        <th>商品名</th>
-        <th>商品詳細</th>
-        <th>価格</th>
-    </tr>
-</thead>
-<% @items.each do |item| %>
-<tbody>
-    <tr>
-        <td><%= link_to item.name, public_item_path(item) %></td>
-        <td><%= item.introduction %></td>
-        <td><%= item.price %></td>
-    </tr>
-</tbody>
-<%= link_to "詳細", public_item_path(item) %>
-<% end %>
+<table>
+    <thead>
+        <tr>
+            <th>商品名</th>
+            <th>商品詳細</th>
+            <th>価格</th>
+            <th>詳細</th>
+            <th>カートに追加</th>
+        </tr>
+    </thead>
+    <tbody>
+    <% @items.each do |item| %>
+        <tr>
+            <td><%= link_to item.name, public_item_path(item) %></td>
+            <td><%= item.introduction %></td>
+            <td><%= item.price %></td>
+            <td><%= link_to "詳細", public_item_path(item) %></td>
+            <td>
+            <%= form_with model:CartItem, url: public_cart_items_path do |f| %>
+            <%= f.hidden_field :name, :value => item.name %>
+            <%= f.hidden_field :introduction, :value => item.introduction %>
+            <%= f.hidden_field :price, :value => item.price %>
+            <%= f.hidden_field :item_id, :value => item.id %>
+            <%= f.submit "カートに追加" %>
+            <% end %>
+            </td>
+        </tr>
+        <% end %>
+    </tbody>
+</table>

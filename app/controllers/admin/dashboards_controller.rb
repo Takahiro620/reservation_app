@@ -14,7 +14,22 @@ class Admin::DashboardsController < ApplicationController
         end
     end
     
+    def update
+        @customer = Customer.find(params[:id])
+        if @customer.is_active == true
+            @customer.update(is_active: false)
+            redirect_to admin_dashboard_path, notice: 'Model was successfully updated.'
+        else
+            @customer.update(is_active: true)
+            redirect_to admin_dashboard_path, notice: 'Model was successfully updated.'
+        end
+    end
+    
     def show
+        @customer = Customer.find(params[:id])
+    end
+    
+    def edit
         @customer = Customer.find(params[:id])
     end
     
